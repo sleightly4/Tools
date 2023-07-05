@@ -1,6 +1,12 @@
 import subprocess
 import os
 
+# Directories searched by grep
+directories = ['/home', '/root']
+
+# Keywords used in search
+keywords = ['password', 'username', 'user', 'pass']
+
 # Check SUIDs
 with open(os.devnull, 'w') as devnull:
     suids = subprocess.check_output(['find', '/', '-perm', '-4000'], stderr=devnull)
@@ -18,12 +24,11 @@ for guid in guids:
     print(guid)
 
 # Search files for specific keywords
-keywords = ['password', 'username', 'user', 'pass']
 print('\nFiles containing the keywords:')
 for keyword in keywords:
     try:
         with open(os.devnull, 'w') as devnull:
-            grep_output = subprocess.check_output(['grep', '-r', '-w', keyword, '/home', '/root'], stderr=devnull)
+            grep_output = subprocess.check_output(['grep', '-r', '-w', keyword] + directories, stderr=devnull)
         grep_output = grep_output.decode().strip().split('\n')
         for line in grep_output:
             print(line)
