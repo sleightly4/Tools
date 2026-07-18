@@ -1,6 +1,10 @@
-/* amodem.c — BITRATE=48 receiver with SFO tracking + Levinson-Durbin FIR equalizer.
- * Faithful port of amodem/{detect,dsp,sampling,recv,equalizer,levinson}.py for BITRATE=48.
- */
+// OFDM modulation implementation derived from amodem
+// Copyright (C) 2014 Roman Zeyde, Google Inc.
+// Licensed under the MIT License
+// Original source: https://github.com/romanzey/amodem
+// amodem.c — BITRATE=48 receiver with SFO tracking + Levinson-Durbin FIR equalizer.
+// * Faithful port of amodem/{detect,dsp,sampling,recv,equalizer,levinson}.py for BITRATE=48.
+//
 #include "decode.h"
 #include <stdlib.h>
 #include <string.h>
